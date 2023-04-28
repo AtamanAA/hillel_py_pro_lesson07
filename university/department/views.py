@@ -13,17 +13,12 @@ def teacher(request):
     if request.method == "POST":
         form = TeacherForm(request.POST)
         if form.is_valid():
-            first_name = form.cleaned_data["first_name"]
-            last_name = form.cleaned_data["last_name"]
-            patronymic = form.cleaned_data["patronymic"]
-            birthday = form.cleaned_data["birthday"]
-            subject = form.cleaned_data["subject"]
             Teacher.objects.create(
-                first_name=first_name,
-                last_name=last_name,
-                patronymic=patronymic,
-                birthday=birthday,
-                subject=subject,
+                first_name=form.cleaned_data["first_name"],
+                last_name=form.cleaned_data["last_name"],
+                patronymic=form.cleaned_data["patronymic"],
+                birthday=form.cleaned_data["birthday"],
+                subject=form.cleaned_data["subject"],
             )
             return HttpResponseRedirect("/teachers/")
     else:
@@ -49,8 +44,7 @@ def group(request):
     if request.method == "POST":
         form = GroupForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data["name"]
-            Group.objects.create(name=name)
+            Group.objects.create(name=form.cleaned_data["name"])
             return HttpResponseRedirect("/groups/")
     else:
         form = GroupForm()
