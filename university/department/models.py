@@ -16,7 +16,7 @@ class Teacher(models.Model):
     last_name = models.CharField(max_length=40)
     patronymic = models.CharField(max_length=40)
     birthday = models.DateField()
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, null=True, on_delete=models.SET_NULL)
 
     def __repr__(self):
         return f"{self.first_name} {self.last_name}"
