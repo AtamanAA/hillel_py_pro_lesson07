@@ -34,7 +34,7 @@ def teachers(request):
             "first_name": person.first_name,
             "last_name": person.last_name,
             "birthday": person.birthday,
-            "subject": Subject.objects.get(id=person.subject_id).name,
+            "subject": person.subject.name,
         }
         teachers_list.append(result)
     return render(request, "department/teachers.html", {"teachers_list": teachers_list})
